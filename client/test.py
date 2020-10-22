@@ -1,13 +1,19 @@
 import re
 import os
 
-text = 'GET ./client.py HTTP1.1'
 
-m = re.search(' (.+?) ', text)
-if m:
-    found = m.group(1)
+filePath = "/foo.txt"
+if(filePath[0] =='/'):
+    filePath = '.' + filePath
+    newFile = filePath[1:len(filePath)-1]
+if(filePath[0] != '.' and filePath[1] != '/'):
+    filePath = './' + filePath
+    newFile = filePath
+if(filePath[0] == '.' and filePath[1] == '/'):
+    newFile = filePath[2:len(filePath)-1]
+else:
+    newFile = filePath
 
-bar = os.path.isfile(found)
-print(bar)
-print(found)
-print(len(found))
+
+print(filePath)
+print(newFile)
